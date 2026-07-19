@@ -1,0 +1,72 @@
+/* Poster interlude — design.md §4.6 / §5.6 */
+
+.poster {
+  background: var(--paper);
+  padding-block: clamp(96px, 20vh, 220px);
+  overflow: hidden;
+}
+
+.poster__grid {
+  display: grid;
+  grid-template-columns: minmax(200px, 280px) 1fr;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(32px, 6vw, 64px);
+}
+
+.poster__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.poster__text {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+.poster__script {
+  font-family: var(--font-script);
+  font-size: var(--fs-script);
+  color: var(--brick);
+  transform: rotate(-3deg);
+  transform-origin: left center;
+  clip-path: inset(0 100% 0 0);
+}
+
+.poster__stage {
+  display: flex;
+  justify-content: center;
+}
+
+.poster__frame {
+  position: relative;
+  padding: 10px;
+  background: var(--brick-deep);
+  box-shadow: 12px 12px 0 var(--ink);
+  width: min(520px, 82vw);
+}
+
+.poster__img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: block;
+  border: 1px solid var(--gold);
+}
+
+.poster__badge {
+  position: absolute;
+  right: -28px;
+  bottom: -28px;
+  filter: drop-shadow(2px 2px 0 var(--ink));
+}
+
+@media (max-width: 767.98px) {
+  .poster { padding-block: clamp(72px, 14vh, 120px); }
+  .poster__grid { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+  .poster__stage { order: -1; margin-bottom: 8px; }
+  .poster__badge { right: -10px; bottom: -10px; }
+  .poster__script { transform-origin: center; }
+}

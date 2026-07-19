@@ -1,0 +1,165 @@
+/* Footer — design.md §4.10 / §5.10 */
+
+.footer {
+  position: relative;
+  background: var(--night);
+  color: var(--paper);
+  border-top: 1px solid color-mix(in srgb, var(--paper) 18%, transparent);
+  padding-block: clamp(64px, 10vh, 120px) clamp(40px, 6vh, 64px);
+  overflow: hidden;
+}
+
+.footer__inner { display: flex; flex-direction: column; gap: clamp(32px, 5vh, 56px); }
+
+.footer__signoff {
+  font-family: var(--font-script);
+  font-size: clamp(3rem, 9vw, 7.5rem);
+  color: var(--glow);
+  line-height: 1;
+  clip-path: inset(0 100% 0 0);
+}
+
+.footer__marquee-line {
+  font-family: var(--font-cond);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: clamp(0.7rem, 1.2vw, 0.95rem);
+  color: color-mix(in srgb, var(--paper) 40%, transparent);
+  line-height: 1.8;
+}
+
+.footer__cols {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 32px;
+  padding-top: clamp(24px, 4vh, 40px);
+  border-top: 1px solid color-mix(in srgb, var(--paper) 15%, transparent);
+}
+
+.footer__col { display: flex; flex-direction: column; gap: 14px; }
+.footer__col--brand { flex-direction: row; align-items: center; gap: 16px; }
+
+.footer__seal {
+  display: block;
+  flex: none;
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
+
+.footer__wordmark {
+  font-family: var(--font-cond);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--paper) 75%, transparent);
+}
+.footer__dot { color: var(--glow); margin: 0 2px; }
+
+.footer__col--links { justify-content: center; }
+.footer__col--links a {
+  font-family: var(--font-cond);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper);
+  width: fit-content;
+  position: relative;
+}
+.footer__col--links a::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -3px;
+  height: 1px;
+  background: var(--glow);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+}
+.footer__col--links a:hover::after { transform: scaleX(1); }
+.footer__col--links a:hover { color: var(--glow); }
+
+.footer__col--social { justify-content: center; }
+.footer__social-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  font-family: var(--font-cond);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper);
+}
+.footer__social-link::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -3px;
+  height: 1px;
+  background: var(--glow);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+}
+.footer__social-link:hover::after { transform: scaleX(1); }
+.footer__social-link:hover { color: var(--glow); }
+.footer__arrow { display: inline-block; transition: transform 0.25s var(--ease-out); }
+.footer__social-link:hover .footer__arrow { transform: translate(2px, -2px); }
+
+.footer__pnc {
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  color: color-mix(in srgb, var(--paper) 55%, transparent);
+  margin-top: 6px;
+}
+
+.footer__legal {
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  color: var(--paper);
+  opacity: 0.5;
+}
+
+.footer__vespa {
+  position: absolute;
+  right: clamp(16px, 4vw, 48px);
+  bottom: 20px;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  transform: rotate(-3deg);
+}
+.footer__pin {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--glow);
+  box-shadow: 0 0 10px 2px color-mix(in srgb, var(--glow) 70%, transparent);
+  margin-bottom: 8px;
+}
+.footer__headlight {
+  position: absolute;
+  left: 10px;
+  top: 16px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--glow);
+  box-shadow: 0 0 6px 2px var(--glow);
+  opacity: 0;
+}
+
+@media (max-width: 1024px) {
+  .footer__cols { grid-template-columns: 1fr 1fr; }
+  .footer__col--brand { grid-column: 1 / -1; }
+}
+
+@media (max-width: 767.98px) {
+  .footer__cols { grid-template-columns: 1fr; }
+  .footer__vespa { position: static; margin-top: 32px; justify-content: flex-end; }
+}

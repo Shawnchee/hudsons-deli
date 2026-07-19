@@ -1,0 +1,134 @@
+/* The Story — design.md §4.4 / §5.4 */
+
+.story {
+  position: relative;
+  background: var(--paper-deep);
+  overflow: hidden;
+}
+
+.story__grid {
+  row-gap: clamp(48px, 8vh, 88px);
+  align-items: start;
+}
+
+.story__copy {
+  grid-column: 1 / span 5;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.story__heading {
+  font-size: var(--fs-h2);
+  color: var(--char);
+}
+.story__accent { color: var(--brick); }
+
+.story__body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-lg);
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 46ch;
+}
+
+/* ── Overlapping photos ── */
+.story__photos {
+  grid-column: 6 / span 7;
+  position: relative;
+  min-height: clamp(360px, 44vw, 520px);
+}
+
+.story__photo {
+  position: absolute;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: var(--hairline);
+  box-shadow: var(--shadow-hard-sm);
+  background: var(--paper-raised);
+}
+.story__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.story__photo--large {
+  inset: 0 8% 8% 0;
+  aspect-ratio: 4 / 5;
+  width: 82%;
+  height: auto;
+  z-index: 1;
+}
+
+.story__photo--small {
+  left: -6%;
+  bottom: -6%;
+  width: 48%;
+  aspect-ratio: 4 / 3;
+  height: auto;
+  transform: rotate(2deg);
+  z-index: 2;
+}
+
+.story__caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -30px;
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  color: var(--ink-soft);
+}
+
+/* ── Counters ── */
+.story__counters {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding-top: clamp(24px, 5vh, 56px);
+  border-top: var(--hairline);
+}
+
+.story__counter { display: flex; flex-direction: column; gap: 8px; }
+
+.story__counter-figure {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-size: var(--fs-counter);
+  color: var(--char);
+  line-height: 1;
+}
+
+.story__counter-num { font-variant-numeric: tabular-nums; }
+
+.story__counter-unit {
+  font-family: var(--font-cond);
+  font-weight: 500;
+  font-size: 0.35em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brick);
+  opacity: 0;
+}
+
+.story__counter-vespa { display: inline-flex; align-self: center; margin-right: 2px; }
+
+.story__counter-label {
+  font-family: var(--font-cond);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 1024px) {
+  .story__copy { grid-column: 1 / -1; }
+  .story__photos { grid-column: 1 / -1; margin-top: 48px; }
+}
+
+@media (max-width: 767.98px) {
+  .story__caption { position: static; margin-top: 10px; }
+  .story__photos { min-height: 0; padding-bottom: 40px; }
+  .story__counters { grid-template-columns: repeat(2, 1fr); row-gap: 32px; }
+}

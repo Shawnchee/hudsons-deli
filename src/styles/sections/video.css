@@ -1,0 +1,149 @@
+/* The Film — design.md §4.7 / §5.7 */
+
+.video {
+  position: relative;
+  background: #211c18;
+  color: var(--paper);
+}
+
+.video .eyebrow { color: var(--gold); }
+.video .eyebrow::before { background: var(--gold); }
+
+.video__grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: clamp(32px, 6vw, 64px);
+  align-items: center;
+}
+
+.video__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.video__heading {
+  font-size: var(--fs-h2);
+  color: var(--paper);
+}
+.video__accent { color: var(--gold); }
+
+.video__body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-lg);
+  color: color-mix(in srgb, var(--paper) 80%, transparent);
+  max-width: 44ch;
+}
+
+.video__credit { margin-top: 4px; }
+.video__credit-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-cond);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper);
+}
+.video__credit-link::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -3px;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+}
+.video__credit-link:hover::after { transform: scaleX(1); }
+.video__credit-link:hover { color: var(--gold); }
+.video__arrow { display: inline-block; transition: transform 0.25s var(--ease-out); }
+.video__credit-link:hover .video__arrow { transform: translate(2px, -2px); }
+
+.video__subcaption {
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  color: color-mix(in srgb, var(--paper) 55%, transparent);
+}
+
+.video__stage { display: flex; justify-content: center; }
+
+.video__phone {
+  position: relative;
+  aspect-ratio: 9 / 16;
+  height: 78vh;
+  max-height: 720px;
+  padding: 8px;
+  border-radius: 16px;
+  border: 1px solid var(--paper);
+  background: #000;
+}
+
+.video__el {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+  background: #000;
+  cursor: pointer;
+}
+
+/* Play overlay — visible whenever the video is paused, hidden while playing. */
+.video__play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--char);
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+  transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+  z-index: 2;
+}
+.video__play svg { width: 30px; height: 30px; margin-left: 3px; }
+.video__play:hover { transform: scale(1.07); }
+.video.is-playing .video__play {
+  opacity: 0;
+  transform: scale(0.7);
+  pointer-events: none;
+}
+
+.video__sound-chip {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--char);
+  font-family: var(--font-cond);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  transition: box-shadow 0.25s var(--ease-out);
+}
+.video__sound-chip[aria-pressed='true'] { box-shadow: 0 0 0 2px var(--gold); }
+
+@media (max-width: 1024px) {
+  .video__grid { grid-template-columns: 1fr; }
+  .video__stage { order: -1; }
+}
+
+@media (max-width: 767.98px) {
+  .video__phone {
+    width: min(70vw, 340px);
+    height: auto;
+    aspect-ratio: 9 / 16;
+  }
+}

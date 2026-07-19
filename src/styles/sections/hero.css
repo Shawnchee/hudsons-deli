@@ -1,0 +1,166 @@
+/* ── §4.2 + §5.0 + §5.2 — Hero "the counter" ──────────────────────────── */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-top: 108px;
+  padding-bottom: clamp(64px, 10vh, 120px);
+  overflow: hidden;
+}
+
+.hero__inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(28px, 4vw, 56px);
+  align-items: center;
+  width: min(100% - var(--gutter) * 2, var(--maxw));
+  margin-inline: auto;
+}
+.hero__type { min-width: 0; }
+
+/* ── Type column ── */
+.hero__type { position: relative; }
+
+.hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-cond);
+  font-weight: 500;
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--brick);
+  margin-bottom: 16px;
+}
+.hero__rule {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--gold);
+  flex: none;
+  transform-origin: left center;
+}
+
+.hero__h1 {
+  font-family: var(--font-display);
+  /* --fs-hero's fluid max (9.5rem) is sized for full-viewport width; in the
+     7-col type column it overflows to ~7 lines. Cap it so the intended
+     3–4 stacked lines (§4.2 / §7) hold, keeping the token's fluid low end. */
+  font-size: min(var(--fs-hero), 5.4rem);
+  line-height: 0.95;
+  color: var(--char);
+  text-transform: uppercase;
+  margin: 0;
+}
+/* Default (no-JS / reduced-motion) = final inked state. */
+.hero__reuben { color: var(--brick); }
+
+.hero__script {
+  display: inline-block;
+  font-family: var(--font-script);
+  font-size: var(--fs-script);
+  color: var(--brick);
+  transform: rotate(-4deg);
+  transform-origin: left center;
+  margin: 2px 0 12px;
+}
+
+.hero__sub {
+  max-width: none;
+  font-family: var(--font-body);
+  font-size: var(--fs-body-lg);
+  color: var(--ink-soft);
+  margin-bottom: 24px;
+}
+
+.hero__cta { display: flex; flex-wrap: wrap; gap: 16px; }
+
+/* ── Starbursts ── */
+.hero__burst { position: absolute; z-index: 2; pointer-events: none; }
+.hero__burst--tr { top: -6px; right: 4%; }
+.hero__burst--bl { left: -48px; bottom: 40px; }
+
+/* ── Image panel ── */
+.hero__panel { position: relative; }
+.hero__frame {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius);
+  border: 1px solid var(--ink);
+  box-shadow: 8px 8px 0 var(--ink);
+  overflow: hidden;
+}
+.hero__imgscale { width: 100%; height: 100%; transform-origin: center; }
+.hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transform-origin: center;
+}
+.hero__badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-38%, -34%);
+  z-index: 3;
+}
+
+/* ── Scroll cue ── */
+.hero__scroll {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+}
+.hero__scroll span {
+  font-family: var(--font-cond);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+.hero__scroll-rule {
+  width: 1px;
+  height: 32px;
+  background: var(--ink);
+  opacity: 0.6;
+}
+
+/* ── Responsive (§7) ── */
+@media (max-width: 900px) {
+  .hero__badge { transform: translate(-30%, -30%) scale(0.9); }
+}
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 96px;
+    min-height: auto;
+  }
+  .hero__inner {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .hero__panel { order: 3; }
+  .hero__frame { aspect-ratio: 4 / 5; }
+  .hero__badge {
+    left: auto;
+    right: 0;
+    transform: translate(28%, -30%);
+    width: 88px !important;
+    height: 88px !important;
+  }
+  .hero__sub { max-width: none; }
+  .hero__cta { flex-direction: column; }
+  .hero__cta .btn { width: 100%; }
+  .hero__burst--bl { left: -6px; bottom: 40px; }
+  .hero__scroll { display: none; }
+}

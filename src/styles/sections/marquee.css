@@ -1,0 +1,38 @@
+/* Marquee divider — design.md §4.3 / §5.3 */
+
+#marquee.marquee-section {
+  position: relative;
+  padding-block: clamp(28px, 4vh, 48px);
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.marquee-band {
+  width: 104vw;
+  margin-left: -2vw;
+  transform: rotate(-2deg);
+  background: var(--brick);
+  padding: 18px 0;
+  overflow: hidden;
+  box-shadow: 0 2px 0 color-mix(in srgb, var(--ink) 20%, transparent);
+}
+
+.marquee-band__marquee { overflow: hidden; width: 100%; }
+
+.marquee-band__item {
+  font-family: var(--font-cond);
+  font-weight: 600;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper);
+  white-space: nowrap;
+}
+
+.marquee-band .marquee__sep {
+  font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-band .marquee__track { transform: none !important; }
+}

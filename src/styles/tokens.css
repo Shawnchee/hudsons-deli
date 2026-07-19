@@ -1,0 +1,61 @@
+/* ── Design tokens — "The Living Poster" (per design.md §2, §3) ──────────
+   FINAL values. Section authors reference these; do not redefine palette
+   or fonts inside section CSS. */
+
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Karla:wght@400;700&family=Oswald:wght@500;600&family=Yellowtail&display=swap');
+
+:root {
+  /* ── Palette (day) ── */
+  --paper: #f4ead5;
+  --paper-raised: #fbf4e4;
+  --paper-deep: #eadcbf;
+  --ink: #1c2b4a;
+  --ink-soft: #41506e;
+  --char: #211c18;
+  --brick: #b5321e;
+  --brick-deep: #8e2417;
+  --gold: #e0a22b;
+  --pastrami: #c46a6a;
+  --crust: #5a3620;
+
+  /* ── Palette (warm night) ── */
+  --night: #101b33;
+  --night-raised: #18264a;
+  --lantern: #d8402b;
+  --glow: #f0b94c;
+
+  /* ── Semantic ── */
+  --bg: var(--paper);
+  --fg: var(--ink);
+
+  /* ── Type families ── */
+  --font-display: 'Alfa Slab One', Georgia, serif; /* heavy slab display */
+  --font-cond: 'Oswald', 'Arial Narrow', sans-serif; /* condensed caps */
+  --font-body: 'Karla', system-ui, sans-serif; /* humanist body */
+  --font-script: 'Yellowtail', cursive; /* sign-painter script */
+
+  /* ── Type scale (fluid) ── */
+  --fs-hero: clamp(3.4rem, 10.5vw, 9.5rem);
+  --fs-h2: clamp(2.4rem, 5.5vw, 4.25rem);
+  --fs-h3: clamp(1.4rem, 2.4vw, 1.9rem);
+  --fs-counter: clamp(2.8rem, 5vw, 4.5rem);
+  --fs-eyebrow: 0.8125rem;
+  --fs-body-lg: 1.1875rem;
+  --fs-body: 1rem;
+  --fs-caption: 0.875rem;
+  --fs-script: clamp(1.8rem, 4vw, 3.2rem);
+
+  /* ── Layout ── */
+  --space: 8px;
+  --maxw: 1240px;
+  --gutter: 24px;
+  --section-pad: clamp(96px, 14vh, 160px);
+  --radius: 12px;
+  --hairline: 1px solid color-mix(in srgb, var(--ink) 25%, transparent);
+  --shadow-hard: 8px 8px 0 var(--ink);
+  --shadow-hard-sm: 6px 6px 0 var(--ink);
+
+  /* ── Motion ── */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-inout: cubic-bezier(0.76, 0, 0.24, 1);
+}
